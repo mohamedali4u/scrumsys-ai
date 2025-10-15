@@ -1,0 +1,44 @@
+{
+  "defaultGroups": [
+    {
+      "id": "investment",
+      "name": "Investment Planning",
+      "description": "Stock market, portfolio management, and investment strategies",
+      "color": "#10B981",
+      "category": "investment",
+      "isDefault": true
+    },
+    {
+      "id": "retirement",
+      "name": "Retirement Planning",
+      "description": "401k, IRA, and long-term retirement strategies",
+      "color": "#8B5CF6",
+      "category": "retirement",
+      "isDefault": true
+    },
+    {
+      "id": "budgeting",
+      "name": "Budget & Savings",
+      "description": "Monthly budgets, emergency funds, and saving strategies",
+      "color": "#F59E0B",
+      "category": "budgeting",
+      "isDefault": true
+    },
+    {
+      "id": "insurance",
+      "name": "Insurance Planning",
+      "description": "Life, health, disability, and property insurance coverage",
+      "color": "#06B6D4",
+      "category": "insurance",
+      "isDefault": true
+    },
+    {
+      "id": "taxes",
+      "name": "Tax Strategy",
+      "description": "Tax planning, optimization, and deduction strategies",
+      "color": "#EF4444",
+      "category": "taxes",
+      "isDefault": true
+    }
+  ]
+}

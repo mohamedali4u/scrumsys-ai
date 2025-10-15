@@ -1,0 +1,46 @@
+{
+  "categories": [
+    {
+      "id": "investment",
+      "name": "Investment",
+      "color": "#10B981",
+      "icon": "TrendingUp",
+      "description": "Stock market, portfolio management, and investment strategies"
+    },
+    {
+      "id": "retirement",
+      "name": "Retirement",
+      "color": "#8B5CF6",
+      "icon": "PiggyBank",
+      "description": "401k, IRA, and long-term retirement planning"
+    },
+    {
+      "id": "budgeting",
+      "name": "Budgeting",
+      "color": "#F59E0B",
+      "icon": "Calculator",
+      "description": "Monthly budgets, emergency funds, and saving strategies"
+    },
+    {
+      "id": "insurance",
+      "name": "Insurance",
+      "color": "#06B6D4",
+      "icon": "Shield",
+      "description": "Life, health, disability, and property insurance planning"
+    },
+    {
+      "id": "taxes",
+      "name": "Taxes",
+      "color": "#EF4444",
+      "icon": "FileText",
+      "description": "Tax planning, optimization, and deduction strategies"
+    },
+    {
+      "id": "general",
+      "name": "General",
+      "color": "#6B7280",
+      "icon": "MessageSquare",
+      "description": "General financial advice and miscellaneous topics"
+    }
+  ]
+}

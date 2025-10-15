@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Widget Integration Tests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-section h2 {
+            color: #333;
+            border-bottom: 2px solid #2563EB;
+            padding-bottom: 10px;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        .test-button {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px 5px 10px 0;
+        }
+        .test-button:hover {
+            background: #1d4ed8;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .iframe-container {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            height: 400px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 AI Agent Widget Integration Tests</h1>
+    <p>This page tests different integration methods for the AI Agent Widget.</p>
+
+    <!-- Script Tag Integration Test -->
+    <div class="test-section">
+        <h2>1. Script Tag Integration</h2>
+        <p>Tests the widget loaded via script tag with data attributes.</p>
+        
+        <div class="code-block">
+&lt;script src="./dist/widget.umd.cjs" 
+        data-ai-widget
+        data-api-key="test-key"
+        data-theme="light"
+        data-position="bottom-right"
+        data-company-name="Test Company"&gt;
+&lt;/script&gt;
+        </div>
+        
+        <button class="test-button" onclick="testScriptTag()">Load Script Tag Widget</button>
+        <button class="test-button" onclick="destroyWidget()">Destroy Widget</button>
+        
+        <div id="script-status" class="status" style="display: none;"></div>
+    </div>
+
+    <!-- React Integration Test -->
+    <div class="test-section">
+        <h2>2. React Integration</h2>
+        <p>Tests the widget as a React component.</p>
+        
+        <div class="code-block">
+import { AIWidget } from './dist/widget.js';
+
+ReactDOM.render(
+  &lt;AIWidget config={{
+    apiKey: 'test-key',
+    theme: 'dark',
+    position: 'bottom-left'
+  }} /&gt;,
+  document.getElementById('react-container')
+);
+        </div>
+        
+        <button class="test-button" onclick="testReactIntegration()">Load React Widget</button>
+        <div id="react-container"></div>
+        <div id="react-status" class="status" style="display: none;"></div>
+    </div>
+
+    <!-- Iframe Integration Test -->
+    <div class="test-section">
+        <h2>3. Iframe Integration</h2>
+        <p>Tests the widget embedded in an iframe.</p>
+        
+        <div class="code-block">
+&lt;iframe src="./index.html?embedded=true" 
+        width="100%" 
+        height="400px" 
+        frameborder="0"&gt;
+&lt;/iframe&gt;
+        </div>
+        
+        <button class="test-button" onclick="testIframeIntegration()">Load Iframe Widget</button>
+        <div id="iframe-container" class="iframe-container" style="display: none;">
+            <iframe id="widget-iframe" width="100%" height="100%" frameborder="0"></iframe>
+        </div>
+        <div id="iframe-status" class="status" style="display: none;"></div>
+    </div>
+
+    <!-- Configuration Test -->
+    <div class="test-section">
+        <h2>4. Configuration Test</h2>
+        <p>Tests different configuration options.</p>
+        
+        <div>
+            <label>Theme: 
+                <select id="theme-select">
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+            </label>
+            
+            <label>Position: 
+                <select id="position-select">
+                    <option value="bottom-right">Bottom Right</option>
+                    <option value="bottom-left">Bottom Left</option>
+                </select>
+            </label>
+            
+            <label>Company Name: 
+                <input type="text" id="company-input" value="Test Company" />
+            </label>
+        </div>
+        
+        <button class="test-button" onclick="testConfiguration()">Apply Configuration</button>
+        <div id="config-status" class="status" style="display: none;"></div>
+    </div>
+
+    <!-- Performance Test -->
+    <div class="test-section">
+        <h2>5. Performance Test</h2>
+        <p>Tests widget loading performance and bundle size.</p>
+        
+        <button class="test-button" onclick="testPerformance()">Run Performance Test</button>
+        <div id="performance-results"></div>
+    </div>
+
+    <!-- Browser Compatibility Test -->
+    <div class="test-section">
+        <h2>6. Browser Compatibility</h2>
+        <p>Checks browser compatibility and feature support.</p>
+        
+        <button class="test-button" onclick="testCompatibility()">Check Compatibility</button>
+        <div id="compatibility-results"></div>
+    </div>
+
+    <script>
+        let currentWidget = null;
+
+        function showStatus(elementId, message, isError = false) {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `status ${isError ? 'error' : 'success'}`;
+            element.style.display = 'block';
+        }
+
+        function testScriptTag() {
+            try {
+                // Remove existing widget
+                if (currentWidget) {
+                    currentWidget.destroy();
+                }
+
+                // Create script element
+                const script = document.createElement('script');
+                script.src = './dist/widget.umd.cjs';
+                script.setAttribute('data-ai-widget', '');
+                script.setAttribute('data-api-key', 'test-key');
+                script.setAttribute('data-theme', 'light');
+                script.setAttribute('data-position', 'bottom-right');
+                script.setAttribute('data-company-name', 'Test Company');
+                
+                script.onload = () => {
+                    showStatus('script-status', '✅ Script tag widget loaded successfully!');
+                };
+                
+                script.onerror = () => {
+                    showStatus('script-status', '❌ Failed to load script tag widget', true);
+                };
+                
+                document.head.appendChild(script);
+                
+            } catch (error) {
+                showStatus('script-status', `❌ Error: ${error.message}`, true);
+            }
+        }
+
+        function destroyWidget() {
+            if (window.AIAgentWidget) {
+                window.AIAgentWidget.destroy();
+                showStatus('script-status', '🗑️ Widget destroyed');
+            }
+        }
+
+        function testReactIntegration() {
+            // This would require React to be loaded
+            showStatus('react-status', '⚠️ React integration requires React library to be loaded', true);
+        }
+
+        function testIframeIntegration() {
+            const container = document.getElementById('iframe-container');
+            const iframe = document.getElementById('widget-iframe');
+            
+            iframe.src = './index.html?embedded=true&apiKey=test-key&theme=light';
+            container.style.display = 'block';
+            
+            iframe.onload = () => {
+                showStatus('iframe-status', '✅ Iframe widget loaded successfully!');
+            };
+            
+            iframe.onerror = () => {
+                showStatus('iframe-status', '❌ Failed to load iframe widget', true);
+            };
+        }
+
+        function testConfiguration() {
+            const theme = document.getElementById('theme-select').value;
+            const position = document.getElementById('position-select').value;
+            const size = document.getElementById('size-select').value;
+            const companyName = document.getElementById('company-input').value;
+            const customWidth = document.getElementById('custom-width').value;
+            const customHeight = document.getElementById('custom-height').value;
+            
+            if (window.AIAgentWidget) {
+                window.AIAgentWidget.destroy();
+                const config = {
+                    apiKey: 'test-key',
+                    theme: theme,
+                    position: position,
+                    size: size,
+                    companyName: companyName
+                };
+                
+                if (size === 'custom') {
+                    if (customWidth) config.customWidth = customWidth;
+                    if (customHeight) config.customHeight = customHeight;
+                }
+                
+                const widget = window.AIAgentWidget.init(config);
+                
+                showStatus('config-status', `✅ Configuration applied: ${theme} theme, ${position} position, ${size} size, "${companyName}"`);
+            } else {
+                showStatus('config-status', '❌ Widget not loaded. Load script tag widget first.', true);
+            }
+        }
+        
+        // Show/hide custom size inputs
+        document.getElementById('size-select').addEventListener('change', function() {
+            const customInputs = document.getElementById('custom-size-inputs');
+            if (this.value === 'custom') {
+                customInputs.style.display = 'block';
+            } else {
+                customInputs.style.display = 'none';
+            }
+        });
+
+        function testPerformance() {
+            const startTime = performance.now();
+            
+            // Test bundle loading
+            fetch('./dist/widget.umd.cjs')
+                .then(response => {
+                    const loadTime = performance.now() - startTime;
+                    const size = response.headers.get('content-length');
+                    
+                    let results = `<div class="status success">
+                        <strong>Performance Results:</strong><br>
+                        📦 Bundle load time: ${loadTime.toFixed(2)}ms<br>
+                        📏 Bundle size: ${size ? (size / 1024).toFixed(2) + 'KB' : 'Unknown'}<br>
+                        🚀 Status: ${loadTime < 1000 ? 'Good' : 'Needs optimization'}
+                    </div>`;
+                    
+                    document.getElementById('performance-results').innerHTML = results;
+                })
+                .catch(error => {
+                    document.getElementById('performance-results').innerHTML = 
+                        `<div class="status error">❌ Performance test failed: ${error.message}</div>`;
+                });
+        }
+
+        function testCompatibility() {
+            const features = {
+                'ES6 Modules': 'noModule' in HTMLScriptElement.prototype,
+                'Fetch API': 'fetch' in window,
+                'Local Storage': 'localStorage' in window,
+                'CSS Grid': CSS.supports('display', 'grid'),
+                'CSS Flexbox': CSS.supports('display', 'flex'),
+                'WebSocket': 'WebSocket' in window,
+                'Service Worker': 'serviceWorker' in navigator
+            };
+            
+            let results = '<div class="status success"><strong>Browser Compatibility:</strong><br>';
+            
+            for (const [feature, supported] of Object.entries(features)) {
+                const icon = supported ? '✅' : '❌';
+                results += `${icon} ${feature}: ${supported ? 'Supported' : 'Not supported'}<br>`;
+            }
+            
+            results += `<br>🌐 User Agent: ${navigator.userAgent}</div>`;
+            
+            document.getElementById('compatibility-results').innerHTML = results;
+        }
+
+        // Auto-run compatibility test on load
+        document.addEventListener('DOMContentLoaded', testCompatibility);
+    </script>
+</body>
+</html>

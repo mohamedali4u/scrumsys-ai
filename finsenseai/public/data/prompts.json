@@ -1,0 +1,156 @@
+{
+  "suggestionPrompts": [
+    {
+      "id": "investment",
+      "label": "Investment Advice",
+      "icon": "TrendingUp",
+      "prompt": "I need help with investment advice. Can you guide me through creating a diversified portfolio based on my risk tolerance and financial goals?",
+      "color": "bg-green-50 text-green-700 border-green-200 hover:bg-green-100",
+      "category": "investment",
+      "description": "Get personalized investment strategies and portfolio recommendations"
+    },
+    {
+      "id": "retirement",
+      "label": "Retirement Planning",
+      "icon": "PiggyBank",
+      "prompt": "I want to plan for retirement. Can you help me understand how much I should save, what retirement accounts to use, and create a timeline?",
+      "color": "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100",
+      "category": "retirement",
+      "description": "Plan your retirement with 401k, IRA, and savings strategies"
+    },
+    {
+      "id": "budgeting",
+      "label": "Create Budget",
+      "icon": "Calculator",
+      "prompt": "I need help creating a monthly budget that works for my lifestyle. Can you guide me through tracking expenses and setting financial goals?",
+      "color": "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100",
+      "category": "budgeting",
+      "description": "Build effective budgets and manage monthly expenses"
+    },
+    {
+      "id": "emergency",
+      "label": "Emergency Fund",
+      "icon": "Shield",
+      "prompt": "I want to build an emergency fund. How much should I save, where should I keep it, and how do I start building it systematically?",
+      "color": "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100",
+      "category": "budgeting",
+      "description": "Build and maintain emergency savings for financial security"
+    },
+    {
+      "id": "debt",
+      "label": "Debt Management",
+      "icon": "CreditCard",
+      "prompt": "I need help managing my debt effectively. What strategies can you recommend for paying off credit cards, loans, and other debts?",
+      "color": "bg-red-50 text-red-700 border-red-200 hover:bg-red-100",
+      "category": "general",
+      "description": "Strategies for paying off debt and improving credit"
+    },
+    {
+      "id": "taxes",
+      "label": "Tax Planning",
+      "icon": "FileText",
+      "prompt": "I need advice on tax planning and optimization. What strategies should I consider to minimize my tax burden legally?",
+      "color": "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100",
+      "category": "taxes",
+      "description": "Tax optimization strategies and deduction planning"
+    },
+    {
+      "id": "insurance",
+      "label": "Insurance Planning",
+      "icon": "Umbrella",
+      "prompt": "I want to understand what insurance coverage I need. Can you help me evaluate life, health, disability, and property insurance options?",
+      "color": "bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100",
+      "category": "insurance",
+      "description": "Comprehensive insurance coverage planning and evaluation"
+    },
+    {
+      "id": "homebuying",
+      "label": "Home Buying",
+      "icon": "Home",
+      "prompt": "I'm thinking about buying a home. Can you help me understand the financial aspects, mortgage options, and how much house I can afford?",
+      "color": "bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100",
+      "category": "general",
+      "description": "Navigate the financial aspects of home purchasing"
+    }
+  ],
+  "smartPrompts": [
+    {
+      "id": "investment-advice",
+      "text": "Get personalized investment advice",
+      "category": "Investment",
+      "contextQuestions": [
+        "What is your current age?",
+        "What is your risk tolerance? (Conservative/Moderate/Aggressive)",
+        "How much are you looking to invest?",
+        "What is your investment timeline?",
+        "Do you have any existing investments?"
+      ],
+      "icon": "TrendingUp"
+    },
+    {
+      "id": "retirement-planning",
+      "text": "Plan for retirement",
+      "category": "Retirement",
+      "contextQuestions": [
+        "What is your current age?",
+        "What is your current annual income?",
+        "How much do you currently have saved for retirement?",
+        "At what age do you want to retire?",
+        "Do you have access to a 401(k) or employer matching?"
+      ],
+      "icon": "PiggyBank"
+    },
+    {
+      "id": "budget-creation",
+      "text": "Create a monthly budget",
+      "category": "Budgeting",
+      "contextQuestions": [
+        "What is your monthly income after taxes?",
+        "What are your fixed monthly expenses? (rent, utilities, etc.)",
+        "Do you have any existing debts?",
+        "What are your financial goals?",
+        "How much do you currently spend on discretionary items?"
+      ],
+      "icon": "Calculator"
+    },
+    {
+      "id": "emergency-fund",
+      "text": "Build an emergency fund",
+      "category": "Savings",
+      "contextQuestions": [
+        "What are your monthly expenses?",
+        "How much do you currently have saved?",
+        "How much can you save monthly?",
+        "Do you have dependents?",
+        "What is your job security level?"
+      ],
+      "icon": "Shield"
+    },
+    {
+      "id": "debt-management",
+      "text": "Manage and pay off debt",
+      "category": "Debt",
+      "contextQuestions": [
+        "What types of debt do you have? (credit cards, loans, etc.)",
+        "What are the total amounts and interest rates?",
+        "What is your monthly income?",
+        "How much can you allocate to debt payments monthly?",
+        "Have you considered debt consolidation?"
+      ],
+      "icon": "FileText"
+    },
+    {
+      "id": "tax-optimization",
+      "text": "Optimize tax strategy",
+      "category": "Taxes",
+      "contextQuestions": [
+        "What is your current tax bracket?",
+        "Do you itemize deductions or take the standard deduction?",
+        "Do you have retirement accounts (401k, IRA)?",
+        "Are you self-employed or have side income?",
+        "Do you own a home or have dependents?"
+      ],
+      "icon": "FileText"
+    }
+  ]
+}
